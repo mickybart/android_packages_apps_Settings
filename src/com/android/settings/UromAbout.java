@@ -1,6 +1,5 @@
 package com.android.settings;
 
-import com.android.internal.logging.MetricsLogger;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -80,11 +79,6 @@ public class UromAbout extends SettingsPreferenceFragment {
         Uri uriUrl = Uri.parse(url);
         Intent intentUrl = new Intent(Intent.ACTION_VIEW, uriUrl);
         getActivity().startActivity(intentUrl);
-    }
-
-    @Override
-    protected int getMetricsCategory() {
-        return MetricsLogger.DISPLAY;
     }
 }
 
