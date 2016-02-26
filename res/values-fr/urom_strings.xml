@@ -76,6 +76,10 @@
     <!-- Night/Day Mode -->
     <string name="color_mode_day">Jour</string>
     <string name="color_mode_night">Nuit</string>
+    
+    <!-- Quick Settings -->
+    <string name="qs_onefinger_title">Accès rapide aux paramètres (*)</string>
+    <string name="qs_onefinger_summary">Ouverture en déplacant un doigt vers le bas</string>
 
     <!-- About -->
     <string name="urom_about_rom">Liens utiles</string>
@@ -83,6 +87,7 @@
     <string name="urom_about_source_summary">Synchronize et contribue</string>
     <string name="urom_about_xda_title">XDA</string>
     <string name="urom_about_xda_summary">Fil de discussion</string>
+    <string name="urom_about_translation_title">Traduction</string>
     <string name="urom_about_donation_title">Donation</string>
     <string name="urom_about_developers">Développeurs</string>
     <string name="urom_about_leaddeveloper">Développeur principal</string>

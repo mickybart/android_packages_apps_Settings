@@ -67,6 +67,9 @@ public class UromSettings extends SettingsPreferenceFragment
     private static final String ALLOW_SIGNATURE_FAKE_KEY = "allow_signature_fake";
     private static final String ALLOW_SIGNATURE_FAKE_PROPERTY = "persist.sys.fake-signature";
     
+    private static final String QS_ONEFINGER_KEY = "qs_onefinger";
+    private static final String QS_ONEFINGER_PROPERTY = "persist.sys.qs_onefinger";
+    
     //urom
     private ListPreference mRamMinfree;
     private ListPreference mZramSize;
@@ -79,6 +82,7 @@ public class UromSettings extends SettingsPreferenceFragment
     private SwitchPreference mMainkeysMusic;
     private SwitchPreference mMainkeysNavBar;
     private SwitchPreference mAllowSignatureFake;
+    private SwitchPreference mQsOneFinger;
 
     //Dialog
     private Dialog mAllowSignatureFakeDialog;
@@ -101,6 +105,7 @@ public class UromSettings extends SettingsPreferenceFragment
         mMainkeysMusic = (SwitchPreference) findPreference(MAINKEYS_MUSIC_KEY);
         mMainkeysNavBar = (SwitchPreference) findPreference(MAINKEYS_NAVBAR_KEY);
         mAllowSignatureFake = (SwitchPreference) findPreference(ALLOW_SIGNATURE_FAKE_KEY);
+        mQsOneFinger = (SwitchPreference) findPreference(QS_ONEFINGER_KEY);
 
         //Dialog
         mAllowSignatureFakeDialog = null;
@@ -132,6 +137,7 @@ public class UromSettings extends SettingsPreferenceFragment
         updateMainkeysMusicOptions();
         updateMainkeysNavBarOptions();
         updateAllowSignatureFakeOptions();
+        updateQsOneFingerOptions();
     }
     
     //urom
@@ -294,6 +300,16 @@ public class UromSettings extends SettingsPreferenceFragment
         updateAllowSignatureFakeOptions();
     }
 
+    private void updateQsOneFingerOptions() {
+        mQsOneFinger.setChecked(SystemProperties.getBoolean(QS_ONEFINGER_PROPERTY, true));
+    }
+    
+    private void writeQsOneFingerOptions() {
+        SystemProperties.set(QS_ONEFINGER_PROPERTY, 
+                mQsOneFinger.isChecked() ? "true" : "false");
+        updateQsOneFingerOptions();
+    }
+
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mMainkeysMusic) {
@@ -322,6 +338,8 @@ public class UromSettings extends SettingsPreferenceFragment
             } else {
                 writeAllowSignatureFakeOptions(false);
             }
+        } else if (preference == mQsOneFinger) {
+            writeQsOneFingerOptions();
         } else {
             return super.onPreferenceTreeClick(preferenceScreen, preference);
         }
