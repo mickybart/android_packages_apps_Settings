@@ -13,6 +13,7 @@
     <string name="urom_help_summary">(*) потрібно перезавантаження</string>
     <string name="urom_screen_adaptive">Адаптивний</string>
     <string name="urom_settings_title">Більше</string>
+    <string name="urom_status_bar_category">Рядок стану</string>
     <string name="urom_other_category">Інше</string>
     <string name="urom_about">Інформація</string>
  
@@ -125,6 +126,21 @@
     <string name="sensors_significant_summary">Виявляти рух пристрою (BETA)</string>
     <string name="sensors_accelerometer_title">Датчик акселерометру (*)</string>
     <string name="sensors_accelerometer_summary">Звітувати силу тяжіння по 3 осях</string>
+
+    <!-- Status bar - Battery icon options -->
+    <string name="status_bar_battery_style_title">Стиль індикатора батареї</string>
+    <string name="status_bar_battery_style_icon_portrait">Вертикальний значок</string>
+    <string name="status_bar_battery_style_icon_landscape">Горизонтальний значок</string>
+    <string name="status_bar_battery_style_circle">Кolo</string>
+    <string name="status_bar_battery_style_dotted_circle">Пунктирний коло</string>
+    <string name="status_bar_battery_style_text">Текст</string>
+    <string name="status_bar_battery_style_hidden">Схований</string>
+
+    <!-- Status bar - Battery percentage -->
+    <string name="status_bar_battery_percentage_title">Відсоток заряду</string>
+    <string name="status_bar_battery_percentage_default">Схований</string>
+    <string name="status_bar_battery_percentage_text_inside">Всередині значка</string>
+    <string name="status_bar_battery_percentage_text_next">Поруч зі значком</string>
 
     <!-- About -->
     <string name="urom_about_rom">Корисні посилання</string>
