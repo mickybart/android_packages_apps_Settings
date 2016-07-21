@@ -51,8 +51,6 @@ public class UromSettings extends SettingsPreferenceFragment
     
     private static final String DOZE_BRIGHTNESS_KEY = "doze_brightness";
     private static final String DOZE_BRIGHTNESS_PROPERTY = "persist.screen.doze_brightness";
-    private static final String DOZE_INVERT_KEY = "doze_invert";
-    private static final String DOZE_INVERT_PROPERTY = "persist.screen.doze_invert";
     
     private static final String LIGHTBAR_MODE_KEY = "lightbar_mode";
     private static final String LIGHTBAR_MODE_PROPERTY = "persist.sys.lightbar_mode";
@@ -95,7 +93,6 @@ public class UromSettings extends SettingsPreferenceFragment
     private ListPreference mZramSize;
     private SwitchPreference mKsm;
     private ListPreference mDozeBrightness;
-    private SwitchPreference mDozeInvert;
     private ListPreference mLightbarMode;
     private SwitchPreference mLightbarFlash;
     private ListPreference mMainkeysLayout;
@@ -125,7 +122,6 @@ public class UromSettings extends SettingsPreferenceFragment
         mZramSize = addListPreference(ZRAM_SIZE_KEY);
         mKsm = (SwitchPreference) findPreference(KSM_KEY);
         mDozeBrightness = addListPreference(DOZE_BRIGHTNESS_KEY);
-        mDozeInvert = (SwitchPreference) findPreference(DOZE_INVERT_KEY);
         mLightbarMode = addListPreference(LIGHTBAR_MODE_KEY);
         mLightbarFlash = (SwitchPreference) findPreference(LIGHTBAR_FLASH_KEY);
         mMainkeysLayout = addListPreference(MAINKEYS_LAYOUT_KEY);
@@ -177,7 +173,6 @@ public class UromSettings extends SettingsPreferenceFragment
         updateZramSizeOptions();
         updateKsmOptions();
         updateDozeBrightnessOptions();
-        updateDozeInvertOptions();
         updateLightbarModeOptions();
         updateLightbarFlashOptions();
         updateMainkeysLayoutOptions();
@@ -272,16 +267,6 @@ public class UromSettings extends SettingsPreferenceFragment
         
         SystemProperties.set(DOZE_BRIGHTNESS_PROPERTY, newValue.toString());
         updateDozeBrightnessOptions();
-    }
-    
-    private void updateDozeInvertOptions() {
-        mDozeInvert.setChecked(SystemProperties.getBoolean(DOZE_INVERT_PROPERTY, true));
-    }
-    
-    private void writeDozeInvertOptions() {
-        SystemProperties.set(DOZE_INVERT_PROPERTY, 
-                mDozeInvert.isChecked() ? "true" : "false");
-        updateDozeInvertOptions();
     }
     
     private void updateLightbarModeOptions() {
@@ -462,8 +447,6 @@ public class UromSettings extends SettingsPreferenceFragment
             writeMainkeysNavBarOptions();
         } else if (preference == mLightbarFlash) {
             writeLightbarFlashOptions();
-        } else if (preference == mDozeInvert) {
-            writeDozeInvertOptions();
         } else if (preference == mKsm) {
             writeKsmOptions();
         } else if (preference == mAllowSignatureFake) {
