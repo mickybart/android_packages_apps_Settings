@@ -146,7 +146,7 @@
     <!-- About -->
     <string name="urom_about_rom">Полезные ссылки</string>
     <string name="urom_about_source_title">Github</string>
-    <string name="urom_about_source_summary">Проверьте и сделайте вклад</string>
+    <string name="urom_about_source_summary">Скачать исходный код и сделать вклад в развитие</string>
     <string name="urom_about_xda_title">XDA</string>
     <string name="urom_about_xda_summary">Ссылка на ROM</string>
     <string name="urom_about_translation_title">Перевод</string>
