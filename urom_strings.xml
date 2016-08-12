@@ -5,7 +5,7 @@
     <string name="urom_category">nAOSProm</string>
     <string name="urom_display_category">Экран и уведомления</string>
     <string name="urom_memory_category">Память</string>
-    <string name="urom_buttons_category">Клавиши</string>
+    <string name="urom_buttons_category">Клавиши управления</string>
     <string name="urom_generic_custom">Другое значение</string>
     <string name="urom_generic_disabled">Отключить</string>
     <string name="urom_generic_default">По умолчанию</string>
@@ -25,11 +25,11 @@
     <string name="zram_size_title">Swap in memory (*)</string>
  
     <!-- lightbar -->
-    <string name="lightbar_mode_title">Световая панель (*)</string>
+    <string name="lightbar_mode_title">Светящаяся панель (*)</string>
     <string name="lightbar_mode_entries_off">Выкл</string>
     <string name="lightbar_mode_entries_5s">Вкл на 5 сек</string>
     <string name="lightbar_mode_entries_on">Вкл/Выкл с экраном</string>
-    <string name="lightbar_flash_title">Уведомление с помощью световой панели (*)</string>
+    <string name="lightbar_flash_title">Уведомление с помощью панели (*)</string>
     <string name="lightbar_flash_summary">Моргнуть при входящем уведомлении</string>
 
     <!-- hw keys layout -->
