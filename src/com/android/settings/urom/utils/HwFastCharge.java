@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
 /*
  * Copyright (C) 2016 nAOSProm
  *
@@ -15,9 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
--->
 
-<resources>
-   <!-- Unlink this dialog from framework -->
-   <style name="Theme.Material.Light.Dialog.NoActionBar" parent="@android:style/Theme.Material.Light.Dialog.NoActionBar" />
-</resources>
+package com.android.settings.urom.utils;
+
+public class HwFastCharge {
+    private static final String FAST_CHARGE_FILE = "/sys/kernel/fast_charge/force_fast_charge";
+
+    public static boolean isSupported() {
+        return (FileUtils.readOneLine(FAST_CHARGE_FILE) != null);
+    }
+
+    public static boolean isEnable() {
+        String value = FileUtils.readOneLine(FAST_CHARGE_FILE);
+
+        return (value != null && value.contentEquals("1"));
+    }
+
+    public static boolean setEnable(boolean value) {
+        return FileUtils.writeLine(FAST_CHARGE_FILE, value ? "1" : "0");
+    }
+}

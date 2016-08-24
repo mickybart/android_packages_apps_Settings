@@ -82,7 +82,7 @@
                 android:id="@+id/urom_about"
                 android:icon="@drawable/ic_settings_about"
                 android:title="@string/urom_about"
-                android:fragment="com.android.settings.UromAbout" />
+                android:fragment="com.android.settings.urom.UromSettingsAbout" />
 
         <!-- Layers -->
         <dashboard-tile
@@ -132,7 +132,7 @@
         <dashboard-tile
                 android:id="@+id/urom_settings"
                 android:title="@string/urom_settings_title"
-                android:fragment="com.android.settings.UromSettings"
+                android:fragment="com.android.settings.urom.UromSettings"
                       android:icon="@drawable/ic_settings_more" />
 
     </dashboard-category>

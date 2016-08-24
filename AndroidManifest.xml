@@ -94,8 +94,8 @@
             android:usesCleartextTraffic="true">
 
         <!-- Urom Settings -->
-        <activity android:name=".UromSettings" />
-        <activity android:name=".UromAbout" />
+        <activity android:name=".urom.UromSettings" />
+        <activity android:name=".urom.UromSettingsAbout" />
 
         <!-- Settings -->
 

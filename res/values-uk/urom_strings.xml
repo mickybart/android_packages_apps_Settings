@@ -10,7 +10,6 @@
     <string name="urom_generic_disabled">Вимкнено</string>
     <string name="urom_generic_default">За замовчуванням</string>
     <string name="urom_generic_reset">Скинути</string>
-    <string name="urom_help_summary">(*) потрібно перезавантаження</string>
     <string name="urom_screen_adaptive">Адаптивний</string>
     <string name="urom_settings_title">Більше</string>
     <string name="urom_status_bar_category">Рядок стану</string>
@@ -18,41 +17,40 @@
     <string name="urom_about">Інформація</string>
  
     <!-- Ram minfree -->
-    <string name="ram_minfree_title">Закриття додатків, при нестачі оперативної пам\'яті (*)</string>
+    <string name="ram_minfree_title">Закриття додатків, при нестачі оперативної пам\'яті</string>
     <string name="ram_minfree_automatic">Автоматично</string>
  
     <!-- zram -->
-    <string name="zram_size_title">Файл підкачки в пам\'яті (*)</string>
+    <string name="zram_size_title">Файл підкачки в пам\'яті</string>
  
     <!-- lightbar -->
-    <string name="lightbar_mode_title">Смуга підсвічування клавіш (*)</string>
+    <string name="lightbar_mode_title">Смуга підсвічування клавіш</string>
     <string name="lightbar_mode_entries_off">Завжди вимкнена</string>
     <string name="lightbar_mode_entries_5s">Вмикати на 5 секунд</string>
     <string name="lightbar_mode_entries_on">Вмикається та вимикати з дисплеєм</string>
-    <string name="lightbar_flash_title">Сповіщення смугою підсвічування (*)</string>
     <string name="lightbar_flash_summary">Спалахувати при сповіщеннях</string>
 
     <!-- hw keys layout -->
+    <!--
     <string name="mainkeys_layout_title">Шаблон клавіш керування (*)</string>
     <string name="mainkeys_layout_entries_deprecated">Застарілий (Android 2.3)</string>
     <string name="mainkeys_layout_entries_modern">Сучасний (Android 4.4+)</string>
+    -->
  
     <!-- hw keys music -->
-    <string name="mainkeys_music_title">Керування плеєром клавішами гучності (*)</string>
+    <!--<string name="mainkeys_music_title">Керування плеєром клавішами гучності (*)</string>-->
     <string name="mainkeys_music_summary">Керувати плеєром за допомогою клавіш гучності, коли дисплей вимкнено</string>
     
     <!-- Camera Key -->
-    <string name="camerakey_title">Клавіша запуску камери (*)</string>
-    <string name="camerakey_longpress_only">Тільки довгий натиск</string>
+    <string name="camerakey_title">Клавіша запуску камери</string>
+    <!--<string name="camerakey_longpress_only">Тільки довгий натиск</string>-->
 
     <!-- Navigation Bar -->
-    <string name="mainkeys_navbar_title">Панель навігації (*)</string>
+    <string name="mainkeys_navbar_title">Панель навігації</string>
     <string name="mainkeys_navbar_summary">Увімкнути наекранні клавіші</string>
  
     <!-- doze -->
-    <string name="doze_brightness_title">Рівень яскравості Ambient Display (*)</string>
-    <string name="doze_invert_title">Інвертувати кольори</string>
-    <string name="doze_invert_summary">Вимкніть тільки в темах з темними сповіщеннями</string>
+    <string name="doze_brightness_title">Рівень яскравості Ambient Display</string>
  
     <!-- color calibration -->
     <string name="color_calibration_title">Калібрування кольору</string>
@@ -104,7 +102,7 @@
     <string name="color_preset_6000">Прямі сонячні промені</string>
 
     <!-- AutoPowerModes -->
-    <string name="autopower_title">Автоматичне заощадження зарядку акумулятора (*)</string>
+    <string name="autopower_title">Автоматичне заощадження зарядку акумулятора</string>
     <string name="autopower_summary">Ambient та додатки в режимі очікування</string>
     
     <!-- Lockscreen -->
@@ -112,19 +110,19 @@
     <string name="lockscreen_phone_summary">Примусово використовувати телефон, замість голосового пошуку</string>
     
     <!-- Quick Settings -->
-    <string name="qs_onefinger_title">Розгортання швидких налаштувань (*)</string>
+    <string name="qs_onefinger_title">Розгортання швидких налаштувань</string>
     <string name="qs_onefinger_summary">Швидке розгортання одним пальцем</string>
 
     <!-- Status Bar Double Tap to Sleep -->
-    <string name="statusbar_doubletap_title">Подвійний дотик, щоб заснути (*)</string>
+    <string name="statusbar_doubletap_title">Подвійний дотик, щоб заснути</string>
     <string name="statusbar_doubletap_summary">Торкніться двічі статусбару, щоб вимкнути дисплей</string>
 
     <!-- Sensors -->
-    <string name="sensors_pickup_title">Датчик пробудження (*)</string>
-    <string name="sensors_pickup_summary">Виявляти, коли пристрій піднято (BETA)</string>
-    <string name="sensors_significant_title">Датчик руху (*)</string>
-    <string name="sensors_significant_summary">Виявляти рух пристрою (BETA)</string>
-    <string name="sensors_accelerometer_title">Датчик акселерометру (*)</string>
+    <string name="sensors_pickup_title">пробудження</string>
+    <string name="sensors_pickup_summary">Виявляти, коли пристрій піднято</string>
+    <string name="sensors_significant_title">Pуху</string>
+    <string name="sensors_significant_summary">Виявляти рух пристрою</string>
+    <string name="sensors_accelerometer_title">Aкселерометру</string>
     <string name="sensors_accelerometer_summary">Звітувати силу тяжіння по 3 осях</string>
 
     <!-- Status bar - Battery icon options -->

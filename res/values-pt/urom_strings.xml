@@ -10,7 +10,6 @@
     <string name="urom_generic_disabled">Desabilitado</string>
     <string name="urom_generic_default">Padrão</string>
     <string name="urom_generic_reset">Reset</string>
-    <string name="urom_help_summary">(*) reinício necessário</string>
     <string name="urom_screen_adaptive">Adaptável</string>
     <string name="urom_settings_title">Mais</string>
     <string name="urom_status_bar_category">Barra de status</string>
@@ -18,37 +17,36 @@
     <string name="urom_about">Informação</string>
  
     <!-- Ram minfree -->
-    <string name="ram_minfree_title">Mínimo de memória livre (*)</string>
+    <string name="ram_minfree_title">Mínimo de memória livre</string>
     <string name="ram_minfree_automatic">Automático</string>
  
     <!-- zram -->
-    <string name="zram_size_title">Tamanho de SWAP na memória (*)</string>
+    <string name="zram_size_title">Tamanho de SWAP na memória</string>
  
     <!-- lightbar -->
-    <string name="lightbar_mode_title">Iluminação da barra de botões (*)</string>
+    <string name="lightbar_mode_title">Iluminação da barra de botões</string>
     <string name="lightbar_mode_entries_off">Sempre desligado</string>
     <string name="lightbar_mode_entries_5s">Ligado por 5s</string>
     <string name="lightbar_mode_entries_on">ligado/Desligado com a tela</string>
-    <string name="lightbar_flash_title">Notificações na barra de botões (*)</string>
     <string name="lightbar_flash_summary">Piscar ao receber notificação</string>
 
     <!-- hw keys layout -->
+    <!--
     <string name="mainkeys_layout_title">Layout da teclas físicas (*)</string>
     <string name="mainkeys_layout_entries_deprecated">Antigo (Android 2.3)</string>
     <string name="mainkeys_layout_entries_modern">Moderno (Android 4.4+)</string>
+    -->
  
     <!-- hw keys music -->
-    <string name="mainkeys_music_title">Teclas físicas - Música (*)</string>
+    <!--<string name="mainkeys_music_title">Teclas físicas - Música (*)</string>-->
     <string name="mainkeys_music_summary">Controla música quando a tela esta desligada</string>
  
     <!-- Navigation Bar -->
-    <string name="mainkeys_navbar_title">Barra de navegação (*)</string>
+    <string name="mainkeys_navbar_title">Barra de navegação</string>
     <string name="mainkeys_navbar_summary">Teclas de navegação na tela</string>
 
     <!-- doze -->
-    <string name="doze_brightness_title">Nível de brilho (*)</string>
-    <string name="doze_invert_title">Inverter cores</string>
-    <string name="doze_invert_summary">Desabilitar apenas em notificações de temas escuros</string>
+    <string name="doze_brightness_title">Nível de brilho</string>
  
     <!-- color calibration -->
     <string name="color_calibration_title">Calibração de cor</string>
@@ -94,7 +92,7 @@
     <string name="color_preset_6000">Luz solar incidente</string>
 
     <!-- AutoPowerModes -->
-    <string name="autopower_title">Economia de energia automática (*)</string>
+    <string name="autopower_title">Economia de energia automática</string>
     <string name="autopower_summary">Iluminação e aplicativos em standby</string>
 
     <!-- Lockscreen -->
@@ -102,7 +100,7 @@
     <string name="lockscreen_phone_summary">Forcar o atalho do discador ao invés do assistente de voz</string>
 
     <!-- Quick Settings -->
-    <string name="qs_onefinger_title">Expandir ajustes rápidos (*)</string>
+    <string name="qs_onefinger_title">Expandir ajustes rápidos</string>
     <string name="qs_onefinger_summary">Puxar rapidamente para baixo com um dedo</string>
 
     <!-- Status bar - Battery icon options -->

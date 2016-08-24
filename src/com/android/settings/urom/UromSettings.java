@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2016 nAOSProm
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,49 +14,36 @@
  * limitations under the License.
  */
 
-package com.android.settings;
+package com.android.settings.urom;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemProperties;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceCategory;
-import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
-import android.provider.Settings;
 import com.android.internal.logging.MetricsLogger;
+import com.android.settings.R;
+import com.android.settings.SettingsActivity;
+import com.android.settings.SettingsPreferenceFragment;
 
-/*
- * Displays preferences for urom.
- */
 public class UromSettings extends SettingsPreferenceFragment
         implements DialogInterface.OnClickListener, DialogInterface.OnDismissListener,
                    OnPreferenceChangeListener {
     private static final String TAG = "UromSettings";
 
     //urom
-    private static final String RAM_MINFREE_KEY = "ram_minfree";
-    private static final String RAM_MINFREE_PROPERTY = "persist.sys.ram_minfree";
-    
-    private static final String ZRAM_SIZE_KEY = "zram_size";
-    private static final String ZRAM_SIZE_PROPERTY = "persist.sys.zram_size";
-    private static final String ZRAM_ENABLE_PROPERTY = "persist.sys.zram_enable";
     private static final String KSM_KEY = "ksm";
     private static final String KSM_PROPERTY = "persist.ksm.enable";
-    
-    private static final String DOZE_BRIGHTNESS_KEY = "doze_brightness";
-    private static final String DOZE_BRIGHTNESS_PROPERTY = "persist.screen.doze_brightness";
-    
+
     private static final String LIGHTBAR_MODE_KEY = "lightbar_mode";
-    private static final String LIGHTBAR_MODE_PROPERTY = "persist.sys.lightbar_mode";
-    private static final String LIGHTBAR_FLASH_KEY = "lightbar_flash";
-    private static final String LIGHTBAR_FLASH_PROPERTY = "persist.sys.lightbar_flash";
 
     private static final String MAINKEYS_LAYOUT_KEY = "mainkeys_layout";
     private static final String MAINKEYS_LAYOUT_PROPERTY = "persist.qemu.hw.mainkeys_layout";
@@ -69,9 +56,10 @@ public class UromSettings extends SettingsPreferenceFragment
 
     private static final String ALLOW_SIGNATURE_FAKE_KEY = "allow_signature_fake";
     private static final String ALLOW_SIGNATURE_FAKE_PROPERTY = "persist.sys.fake-signature";
-    
+
+    private static final String SENSORS_KEY = "sensors";
     private static final String AUTOPOWER_KEY = "autopower";
-    private static final String AUTOPOWER_PROPERTY = "persist.sys.autopower";
+    public static final String AUTOPOWER_PROPERTY = "persist.sys.autopower";
     
     private static final String LOCKSCREEN_PHONE_KEY = "lockscreen_phone";
     private static final String LOCKSCREEN_PHONE_PROPERTY = "persist.lock.force_phone";
@@ -82,43 +70,41 @@ public class UromSettings extends SettingsPreferenceFragment
     private static final String STATUSBAR_DOUBLETAP_KEY = "statusbar_doubletap";
     private static final String STATUSBAR_DOUBLETAP_PROPERTY = "persist.sys.statusbar.dt2s";
 
-    private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
-    private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
-
-    private static final String SENSORS_PICKUP_KEY = "sensors_pickup";
-    private static final String SENSORS_PICKUP_PROPERTY = "persist.sensors.pickup";
-    private static final String SENSORS_SIGNIFICANT_KEY = "sensors_significant";
-    private static final String SENSORS_SIGNIFICANT_PROPERTY = "persist.sensors.significant";
-    private static final String SENSORS_ACCEL_KEY = "sensors_accelerometer";
-    private static final String SENSORS_ACCEL_PROPERTY = "persist.sensors.accelerometer";
-
-    private static final int STATUS_BAR_BATTERY_STYLE_HIDDEN = 4;
-    private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 6;
-
     //urom
-    private ListPreference mRamMinfree;
-    private ListPreference mZramSize;
     private SwitchPreference mKsm;
-    private ListPreference mDozeBrightness;
-    private ListPreference mLightbarMode;
-    private SwitchPreference mLightbarFlash;
     private ListPreference mMainkeysLayout;
     private SwitchPreference mMainkeysMusic;
     private ListPreference mCamerakey;
     private SwitchPreference mMainkeysNavBar;
     private SwitchPreference mAllowSignatureFake;
+    private PreferenceScreen mSensors;
     private SwitchPreference mAutoPower;
     private SwitchPreference mLockscreenPhone;
     private SwitchPreference mQsOneFinger;
     private SwitchPreference mStatusbarDt2s;
-    private ListPreference mStatusBarBatteryShowPercent;
-    private SwitchPreference mSensorsPickup;
-    private SwitchPreference mSensorsSignificant;
-    private SwitchPreference mSensorsAccel;
-    private ListPreference mStatusBarBatteryStyle;
 
     //Dialog
     private Dialog mAllowSignatureFakeDialog;
+
+    public static void rebootRequired(Preference pref)
+    {
+        SettingsActivity sa = null;
+        Context c = pref.getContext();
+        if (c instanceof SettingsActivity)
+            sa = (SettingsActivity)c;
+
+        if (sa != null)
+            sa.getRebootBar().show();
+    }
+
+    public static void rebootRequired(Activity activity) {
+        SettingsActivity sa = null;
+        if (activity instanceof SettingsActivity)
+            sa = (SettingsActivity)activity;
+
+        if (sa != null)
+            sa.getRebootBar().show();
+    }
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -127,26 +113,17 @@ public class UromSettings extends SettingsPreferenceFragment
         addPreferencesFromResource(R.xml.urom_settings);
         
         //urom
-        mRamMinfree = addListPreference(RAM_MINFREE_KEY);
-        mZramSize = addListPreference(ZRAM_SIZE_KEY);
         mKsm = (SwitchPreference) findPreference(KSM_KEY);
-        mDozeBrightness = addListPreference(DOZE_BRIGHTNESS_KEY);
-        mLightbarMode = addListPreference(LIGHTBAR_MODE_KEY);
-        mLightbarFlash = (SwitchPreference) findPreference(LIGHTBAR_FLASH_KEY);
         mMainkeysLayout = addListPreference(MAINKEYS_LAYOUT_KEY);
         mMainkeysMusic = (SwitchPreference) findPreference(MAINKEYS_MUSIC_KEY);
         mCamerakey = addListPreference(CAMERAKEY_KEY);
         mMainkeysNavBar = (SwitchPreference) findPreference(MAINKEYS_NAVBAR_KEY);
         mAllowSignatureFake = (SwitchPreference) findPreference(ALLOW_SIGNATURE_FAKE_KEY);
+        mSensors = (PreferenceScreen) findPreference(SENSORS_KEY);
         mAutoPower = (SwitchPreference) findPreference(AUTOPOWER_KEY);
         mLockscreenPhone = (SwitchPreference) findPreference(LOCKSCREEN_PHONE_KEY);
         mQsOneFinger = (SwitchPreference) findPreference(QS_ONEFINGER_KEY);
         mStatusbarDt2s = (SwitchPreference) findPreference(STATUSBAR_DOUBLETAP_KEY);
-        mStatusBarBatteryStyle = addListPreference(STATUS_BAR_BATTERY_STYLE);
-        mStatusBarBatteryShowPercent = addListPreference(STATUS_BAR_SHOW_BATTERY_PERCENT);
-        mSensorsPickup = (SwitchPreference) findPreference(SENSORS_PICKUP_KEY);
-        mSensorsSignificant = (SwitchPreference) findPreference(SENSORS_SIGNIFICANT_KEY);
-        mSensorsAccel = (SwitchPreference) findPreference(SENSORS_ACCEL_KEY);
 
         //Dialog
         mAllowSignatureFakeDialog = null;
@@ -155,8 +132,7 @@ public class UromSettings extends SettingsPreferenceFragment
         if (! SystemProperties.get("ro.product.device","").equals("nozomi")) {
             PreferenceCategory mCategory = (PreferenceCategory) findPreference("urom_display_category");
 
-            mCategory.removePreference(mLightbarMode);
-            mCategory.removePreference(mLightbarFlash);
+            mCategory.removePreference(findPreference(LIGHTBAR_MODE_KEY));
         }
     }
 
@@ -180,78 +156,20 @@ public class UromSettings extends SettingsPreferenceFragment
 
     private void updateAllOptions() {       
         //urom
-        updateRamMinfreeOptions();
-        updateZramSizeOptions();
         updateKsmOptions();
-        updateDozeBrightnessOptions();
-        updateLightbarModeOptions();
-        updateLightbarFlashOptions();
         updateMainkeysLayoutOptions();
         updateMainkeysMusicOptions();
         updateCamerakeyOptions();
         updateMainkeysNavBarOptions();
         updateAllowSignatureFakeOptions();
+        updateSensorsOptions();
         updateAutoPowerOptions();
         updateLockscreenPhoneOptions();
         updateQsOneFingerOptions();
         updateStatusbarDt2sOptions();
-        updateSensorsPickupOptions();
-        updateSensorsSignificantOptions();
-        updateSensorsAccelOptions();
-        updateStatusBarBatteryStyle();
-        updateStatusBarBatteryShowPercent();
     }
     
     //urom
-    private void updateRamMinfreeOptions() {
-        String value = SystemProperties.get(RAM_MINFREE_PROPERTY, "-1");
-        int index = mRamMinfree.findIndexOfValue(value);
-        if (index == -1) {
-            index = mRamMinfree.getEntryValues().length - 1;
-        }
-        mRamMinfree.setValueIndex(index);
-        mRamMinfree.setSummary(mRamMinfree.getEntries()[index]);
-    }
-
-    private void writeRamMinfreeOptions(Object newValue) {
-        if (newValue.toString().contentEquals("-2")) {
-            // custom
-            return;
-        }
-        
-        SystemProperties.set(RAM_MINFREE_PROPERTY, newValue.toString());
-        updateRamMinfreeOptions();
-    }
-
-    private void updateZramSizeOptions() {
-        String value = SystemProperties.get(ZRAM_SIZE_PROPERTY, "0");
-        int index = mZramSize.findIndexOfValue(value);
-        if (index == -1) {
-            index = mZramSize.getEntryValues().length - 1;
-        }
-        mZramSize.setValueIndex(index);
-        mZramSize.setSummary(mZramSize.getEntries()[index]);
-    }
-
-    private void writeZramSizeOptions(Object newValue) {
-        String value = newValue.toString();
-    
-        if (value.contentEquals("-2")) {
-            // custom
-            return;
-        }
-        
-        SystemProperties.set(ZRAM_SIZE_PROPERTY, value);
-        
-        if (value.contentEquals("0")) {
-            SystemProperties.set(ZRAM_ENABLE_PROPERTY, "false");
-        } else {
-            SystemProperties.set(ZRAM_ENABLE_PROPERTY, "true");
-        }
-        
-        updateZramSizeOptions();
-    }
-
     private void updateKsmOptions() {
         mKsm.setChecked(SystemProperties.getBoolean(KSM_PROPERTY, false));
     }
@@ -260,51 +178,6 @@ public class UromSettings extends SettingsPreferenceFragment
         SystemProperties.set(KSM_PROPERTY, 
                 mKsm.isChecked() ? "true" : "false");
         updateKsmOptions();
-    }
-    
-    private void updateDozeBrightnessOptions() {
-        String value = SystemProperties.get(DOZE_BRIGHTNESS_PROPERTY, "-1");
-        int index = mDozeBrightness.findIndexOfValue(value);
-        if (index == -1) {
-            index = mDozeBrightness.getEntryValues().length - 1;
-        }
-        mDozeBrightness.setValueIndex(index);
-        mDozeBrightness.setSummary((mDozeBrightness.getEntries()[index]).toString().replace("%","%%"));
-    }
-
-    private void writeDozeBrightnessOptions(Object newValue) {
-        if (newValue.toString().contentEquals("-2")) {
-            // custom
-            return;
-        }
-        
-        SystemProperties.set(DOZE_BRIGHTNESS_PROPERTY, newValue.toString());
-        updateDozeBrightnessOptions();
-    }
-    
-    private void updateLightbarModeOptions() {
-        String value = SystemProperties.get(LIGHTBAR_MODE_PROPERTY, "1");
-        int index = mLightbarMode.findIndexOfValue(value);
-        if (index == -1) {
-            index = 1;
-        }
-        mLightbarMode.setValueIndex(index);
-        mLightbarMode.setSummary(mLightbarMode.getEntries()[index]);
-    }
-    
-    private void writeLightbarModeOptions(Object newValue) {
-        SystemProperties.set(LIGHTBAR_MODE_PROPERTY, newValue.toString());
-        updateLightbarModeOptions();
-    }
-    
-    private void updateLightbarFlashOptions() {
-        mLightbarFlash.setChecked(!SystemProperties.get(LIGHTBAR_FLASH_PROPERTY, "1").contentEquals("0"));
-    }
-    
-    private void writeLightbarFlashOptions() {
-        SystemProperties.set(LIGHTBAR_FLASH_PROPERTY, 
-                mLightbarFlash.isChecked() ? "1" : "0");
-        updateLightbarFlashOptions();
     }
     
     private void updateMainkeysLayoutOptions() {
@@ -319,6 +192,7 @@ public class UromSettings extends SettingsPreferenceFragment
     
     private void writeMainkeysLayoutOptions(Object newValue) {
         SystemProperties.set(MAINKEYS_LAYOUT_PROPERTY, newValue.toString());
+        rebootRequired(getActivity());
         updateMainkeysLayoutOptions();
     }
     
@@ -329,6 +203,7 @@ public class UromSettings extends SettingsPreferenceFragment
     private void writeMainkeysMusicOptions() {
         SystemProperties.set(MAINKEYS_MUSIC_PROPERTY, 
                 mMainkeysMusic.isChecked() ? "1" : "0");
+        rebootRequired(getActivity());
         updateMainkeysMusicOptions();
     }
     
@@ -344,6 +219,7 @@ public class UromSettings extends SettingsPreferenceFragment
     
     private void writeCamerakeyOptions(Object newValue) {
         SystemProperties.set(CAMERAKEY_PROPERTY, newValue.toString());
+        rebootRequired(getActivity());
         updateCamerakeyOptions();
     }
 
@@ -354,6 +230,7 @@ public class UromSettings extends SettingsPreferenceFragment
     private void writeMainkeysNavBarOptions() {
         SystemProperties.set(MAINKEYS_NAVBAR_PROPERTY, 
                 mMainkeysNavBar.isChecked() ? "0" : "1");
+        rebootRequired(getActivity());
         updateMainkeysNavBarOptions();
     }
 
@@ -367,13 +244,19 @@ public class UromSettings extends SettingsPreferenceFragment
         updateAllowSignatureFakeOptions();
     }
 
+    private void updateSensorsOptions() {
+        mSensors.setSummary(UromSettingsSensors.getSummaryPreference(getContext()));
+    }
+
     private void updateAutoPowerOptions() {
         mAutoPower.setChecked(SystemProperties.getBoolean(AUTOPOWER_PROPERTY, true));
+        mAutoPower.setEnabled(UromSettingsSensors.hasSignificantMotionSensor());
     }
     
     private void writeAutoPowerOptions() {
         SystemProperties.set(AUTOPOWER_PROPERTY, 
                 mAutoPower.isChecked() ? "true" : "false");
+        rebootRequired(getActivity());
         updateAutoPowerOptions();
     }
     
@@ -394,6 +277,7 @@ public class UromSettings extends SettingsPreferenceFragment
     private void writeQsOneFingerOptions() {
         SystemProperties.set(QS_ONEFINGER_PROPERTY, 
                 mQsOneFinger.isChecked() ? "true" : "false");
+        rebootRequired(getActivity());
         updateQsOneFingerOptions();
     }
 
@@ -404,94 +288,8 @@ public class UromSettings extends SettingsPreferenceFragment
     private void writeStatusbarDt2sOptions() {
         SystemProperties.set(STATUSBAR_DOUBLETAP_PROPERTY,
                 mStatusbarDt2s.isChecked() ? "true" : "false");
+        rebootRequired(getActivity());
         updateStatusbarDt2sOptions();
-        updateStatusBarBatteryShowPercent();
-    }
-
-    private void updateSensorsPickupOptions() {
-        mSensorsPickup.setChecked(!SystemProperties.get(SENSORS_PICKUP_PROPERTY, "0").contentEquals("0"));
-    }
-
-    private void writeSensorsPickupOptions() {
-        SystemProperties.set(SENSORS_PICKUP_PROPERTY,
-                mSensorsPickup.isChecked() ? "1" : "0");
-        updateSensorsPickupOptions();
-    }
-
-    private void updateSensorsSignificantOptions() {
-        mSensorsSignificant.setChecked(!SystemProperties.get(SENSORS_SIGNIFICANT_PROPERTY, "0").contentEquals("0"));
-
-        mAutoPower.setEnabled(mSensorsSignificant.isChecked());
-        if (mAutoPower.isChecked() && !mSensorsSignificant.isChecked()) {
-            /* this is an invalid configuration so we need to set mAutoPower to disable */
-            mAutoPower.setChecked(false);
-            writeAutoPowerOptions();
-        }
-    }
-
-    private void writeSensorsSignificantOptions() {
-        SystemProperties.set(SENSORS_SIGNIFICANT_PROPERTY,
-                mSensorsSignificant.isChecked() ? "1" : "0");
-        updateSensorsSignificantOptions();
-
-        /* mAutoPower depends on Significant Motion Sensor
-         * We set it to true by default if the significant motion sensor is enabled
-         */
-        if (mSensorsSignificant.isChecked()) {
-            mAutoPower.setChecked(true);
-            writeAutoPowerOptions();
-        }
-    }
-
-    private void updateSensorsAccelOptions() {
-        mSensorsAccel.setChecked(!SystemProperties.get(SENSORS_ACCEL_PROPERTY, "1").contentEquals("0"));
-    }
-
-    private void writeSensorsAccelOptions() {
-        SystemProperties.set(SENSORS_ACCEL_PROPERTY,
-                mSensorsAccel.isChecked() ? "1" : "0");
-        updateSensorsAccelOptions();
-    }
-
-    private void updateStatusBarBatteryStyle() {
-        int batteryStyle = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.STATUS_BAR_BATTERY_STYLE, 0);
-        mStatusBarBatteryStyle.setValue(String.valueOf(batteryStyle));
-        mStatusBarBatteryStyle.setSummary(mStatusBarBatteryStyle.getEntry());
-        enableStatusBarBatteryDependents(batteryStyle);
-    }
-
-    private void writeStatusBarBatteryStyle(Object newValue) {
-        int batteryStyle = Integer.valueOf((String) newValue);
-        int index = mStatusBarBatteryStyle.findIndexOfValue((String) newValue);
-        Settings.System.putInt(getActivity().getContentResolver(),
-                Settings.System.STATUS_BAR_BATTERY_STYLE, batteryStyle);
-        mStatusBarBatteryStyle.setSummary(mStatusBarBatteryStyle.getEntries()[index]);
-        enableStatusBarBatteryDependents(batteryStyle);
-    }
-
-    private void updateStatusBarBatteryShowPercent() {
-        int batteryShowPercent = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT, 0);
-        mStatusBarBatteryShowPercent.setValue(String.valueOf(batteryShowPercent));
-        mStatusBarBatteryShowPercent.setSummary(mStatusBarBatteryShowPercent.getEntry());
-    }
-
-    private void writeStatusBarBatteryShowPercent(Object newValue) {
-        int batteryShowPercent = Integer.valueOf((String) newValue);
-        int index = mStatusBarBatteryShowPercent.findIndexOfValue((String) newValue);
-        Settings.System.putInt(getActivity().getContentResolver(),
-                Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT, batteryShowPercent);
-        mStatusBarBatteryShowPercent.setSummary(mStatusBarBatteryShowPercent.getEntries()[index]);
-    }
-
-    private void enableStatusBarBatteryDependents(int batteryIconStyle) {
-        if (batteryIconStyle == STATUS_BAR_BATTERY_STYLE_HIDDEN ||
-                batteryIconStyle == STATUS_BAR_BATTERY_STYLE_TEXT) {
-            mStatusBarBatteryShowPercent.setEnabled(false);
-        } else {
-            mStatusBarBatteryShowPercent.setEnabled(true);
-        }
     }
 
     @Override
@@ -500,8 +298,6 @@ public class UromSettings extends SettingsPreferenceFragment
             writeMainkeysMusicOptions();
         } else if (preference == mMainkeysNavBar) {
             writeMainkeysNavBarOptions();
-        } else if (preference == mLightbarFlash) {
-            writeLightbarFlashOptions();
         } else if (preference == mKsm) {
             writeKsmOptions();
         } else if (preference == mAllowSignatureFake) {
@@ -528,12 +324,6 @@ public class UromSettings extends SettingsPreferenceFragment
             writeQsOneFingerOptions();
         } else if (preference == mStatusbarDt2s) {
             writeStatusbarDt2sOptions();
-        } else if (preference == mSensorsPickup) {
-            writeSensorsPickupOptions();
-        } else if (preference == mSensorsSignificant) {
-            writeSensorsSignificantOptions();
-        } else if (preference == mSensorsAccel) {
-            writeSensorsAccelOptions();
         } else {
             return super.onPreferenceTreeClick(preferenceScreen, preference);
         }
@@ -543,29 +333,11 @@ public class UromSettings extends SettingsPreferenceFragment
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mRamMinfree) {
-            writeRamMinfreeOptions(newValue);
-            return true;
-        } else if (preference == mZramSize) {
-            writeZramSizeOptions(newValue);
-            return true;
-        } else if (preference == mDozeBrightness) {
-            writeDozeBrightnessOptions(newValue);
-            return true;
-        } else if (preference == mLightbarMode) {
-            writeLightbarModeOptions(newValue);
-            return true;
-        } else if (preference == mMainkeysLayout) {
+        if (preference == mMainkeysLayout) {
             writeMainkeysLayoutOptions(newValue);
             return true;
         } else if (preference == mCamerakey) {
             writeCamerakeyOptions(newValue);
-            return true;
-        } else if (preference == mStatusBarBatteryShowPercent) {
-            writeStatusBarBatteryShowPercent(newValue);
-            return true;
-        } else if (preference == mStatusBarBatteryStyle) {
-            writeStatusBarBatteryStyle(newValue);
             return true;
         }
         return false;

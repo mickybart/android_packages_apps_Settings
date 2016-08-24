@@ -18,6 +18,6 @@
 -->
 
 <resources>
-   <!-- Unlink this dialog from framework -->
-   <style name="Theme.Material.Light.Dialog.NoActionBar" parent="@android:style/Theme.Material.Light.Dialog.NoActionBar" />
+    <dimen name="urom_dialog_padding">20dip</dimen>
+    <dimen name="urom_dialog_headlist_padding">6dip</dimen>
 </resources>

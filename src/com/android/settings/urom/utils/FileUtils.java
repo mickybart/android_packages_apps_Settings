@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.util;
+package com.android.settings.urom.utils;
 
 import android.util.Log;
 

@@ -1,41 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/urom_category">
-     
-    <Preference
-         android:key="help_urom"
-         android:summary="@string/urom_help_summary"
-         android:selectable="false"/>
-
 
     <PreferenceCategory android:key="urom_display_category"
             android:title="@string/urom_display_category">
 
-        <ListPreference
+        <com.android.settings.urom.widgets.UromAmbient
             android:key="doze_brightness"
             android:title="@string/doze_brightness_title"
-            android:persistent="false"
-            android:entries="@array/doze_brightness_entries"
-            android:entryValues="@array/doze_brightness_values" />
-    
-        <ListPreference
+            android:persistent="false" />
+
+        <com.android.settings.urom.widgets.UromLightbar
             android:key="lightbar_mode"
             android:title="@string/lightbar_mode_title"
-            android:persistent="false"
-            android:entries="@array/lightbar_mode_entries"
-            android:entryValues="@array/lightbar_mode_values" />
-    
-        <SwitchPreference
-            android:key="lightbar_flash"
-            android:title="@string/lightbar_flash_title"
-            android:summary="@string/lightbar_flash_summary"/>
-    
-        <com.android.settings.DisplayColor
+            android:persistent="false" />
+
+        <PreferenceScreen
             android:key="color_calibration"
             android:title="@string/color_calibration_title"
-            android:dialogTitle="@string/color_calibration_title"
             android:summary="@string/color_calibration_summary"
-            android:persistent="false" />
+            android:fragment="com.android.settings.urom.UromSettingsScreenColors" />
 
     </PreferenceCategory>
 
@@ -57,6 +41,7 @@
         <ListPreference
             android:key="camerakey"
             android:title="@string/camerakey_title"
+            android:dialogTitle="@string/camerakey_dialog_title"
             android:persistent="false"
             android:entries="@array/camerakey_entries"
             android:entryValues="@array/camerakey_values" />
@@ -71,19 +56,15 @@
     <PreferenceCategory android:key="urom_memory_category"
             android:title="@string/urom_memory_category">
 
-        <ListPreference
+        <com.android.settings.urom.widgets.UromLowMemoryKiller
             android:key="ram_minfree"
             android:title="@string/ram_minfree_title"
-            android:persistent="false"
-            android:entries="@array/ram_minfree_entries"
-            android:entryValues="@array/ram_minfree_values" />
-    
-        <ListPreference
+            android:persistent="false" />
+
+        <com.android.settings.urom.widgets.UromZram
             android:key="zram_size"
             android:title="@string/zram_size_title"
-            android:persistent="false"
-            android:entries="@array/zram_size_entries"
-            android:entryValues="@array/zram_size_values" />
+            android:persistent="false" />
 
         <SwitchPreference
             android:key="ksm"
@@ -105,25 +86,16 @@
     <PreferenceCategory android:key="urom_system_category"
             android:title="@string/header_category_system">
 
-        <SwitchPreference
-            android:key="sensors_pickup"
-            android:title="@string/sensors_pickup_title"
-            android:summary="@string/sensors_pickup_summary"/>
-
-        <SwitchPreference
-            android:key="sensors_significant"
-            android:title="@string/sensors_significant_title"
-            android:summary="@string/sensors_significant_summary"/>
+        <PreferenceScreen
+            android:key="sensors"
+            android:title="@string/sensors_title"
+            android:summary="@string/sensors_summary"
+            android:fragment="com.android.settings.urom.UromSettingsSensors" />
 
         <SwitchPreference
             android:key="autopower"
             android:title="@string/autopower_title"
             android:summary="@string/autopower_summary"/>
-
-        <SwitchPreference
-            android:key="sensors_accelerometer"
-            android:title="@string/sensors_accelerometer_title"
-            android:summary="@string/sensors_accelerometer_summary"/>
 
     </PreferenceCategory>
 
@@ -140,19 +112,10 @@
             android:title="@string/statusbar_doubletap_title"
             android:summary="@string/statusbar_doubletap_summary"/>
 
-        <ListPreference
-            android:key="status_bar_battery_style"
-            android:title="@string/status_bar_battery_style_title"
-            android:dialogTitle="@string/status_bar_battery_style_title"
-            android:entries="@array/status_bar_battery_style_entries"
-            android:entryValues="@array/status_bar_battery_style_values" />
-
-        <ListPreference
-            android:key="status_bar_show_battery_percent"
-            android:title="@string/status_bar_battery_percentage_title"
-            android:dialogTitle="@string/status_bar_battery_percentage_title"
-            android:entries="@array/status_bar_battery_percentage_entries"
-            android:entryValues="@array/status_bar_battery_percentage_values" />
+        <com.android.settings.urom.widgets.UromBattery
+            android:key="status_bar_battery"
+            android:title="@string/status_bar_battery_title"
+            android:persistent="false" />
 
     </PreferenceCategory>
 

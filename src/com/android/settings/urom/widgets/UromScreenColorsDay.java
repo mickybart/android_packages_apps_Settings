@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
 /*
  * Copyright (C) 2016 nAOSProm
  *
@@ -15,9 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
--->
 
-<resources>
-   <!-- Unlink this dialog from framework -->
-   <style name="Theme.Material.Light.Dialog.NoActionBar" parent="@android:style/Theme.Material.Light.Dialog.NoActionBar" />
-</resources>
+package com.android.settings.urom.widgets;
+
+import android.content.Context;
+import android.util.AttributeSet;
+
+import com.android.settings.urom.UromScreenColors;
+
+public class UromScreenColorsDay extends UromScreenColors {
+    public UromScreenColorsDay(Context context, AttributeSet attrs) {
+        super(context, attrs, true);
+    }
+}
+

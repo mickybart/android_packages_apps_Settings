@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2009 The Android Open Source Project
+ * Copyright (C) 2016 nAOSProm
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +30,6 @@ import android.os.UserHandle;
 import android.preference.Preference;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
-import android.text.TextUtils;
 import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.Menu;
@@ -40,12 +40,12 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.os.BatterySipper;
 import com.android.internal.os.BatterySipper.DrainType;
 import com.android.internal.os.PowerProfile;
-import com.android.settings.HelpUtils;
 import com.android.settings.R;
 import com.android.settings.Settings.HighPowerApplicationsActivity;
 import com.android.settings.SettingsActivity;
 import com.android.settings.applications.ManageApplications;
-import com.android.settings.util.FileUtils;
+import com.android.settings.urom.utils.FileUtils;
+import com.android.settings.urom.utils.HwFastCharge;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -66,8 +66,6 @@ public class PowerUsageSummary extends PowerUsageBase {
 
     private static final String KEY_APP_LIST = "app_list";
     private static final String KEY_BATTERY_HISTORY = "battery_history";
-
-    private static final String FAST_CHARGE_FILE = "/sys/kernel/fast_charge/force_fast_charge";
 
     private static final int MENU_STATS_TYPE = Menu.FIRST;
     private static final int MENU_BATTERY_SAVER = Menu.FIRST + 2;
@@ -146,12 +144,11 @@ public class PowerUsageSummary extends PowerUsageBase {
         menu.add(0, MENU_HIGH_POWER_APPS, 0, R.string.high_power_apps);
         super.onCreateOptionsMenu(menu, inflater);
 
-        String fastChargeState = FileUtils.readOneLine(FAST_CHARGE_FILE);
-        if (fastChargeState != null) {
+        if (HwFastCharge.isSupported()) {
             MenuItem fastCharge = menu.add(0, MENU_FAST_CHARGE, 0, R.string.fast_charge);
             fastCharge.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
             fastCharge.setCheckable(true);
-            fastCharge.setChecked(fastChargeState.contentEquals("1"));
+            fastCharge.setChecked(HwFastCharge.isEnable());
         }
     }
 
@@ -184,7 +181,7 @@ public class PowerUsageSummary extends PowerUsageBase {
                         R.string.high_power_apps, null, null, 0);
                 return true;
             case MENU_FAST_CHARGE:
-                if (FileUtils.writeLine(FAST_CHARGE_FILE, item.isChecked() ? "0" : "1")) {
+                if (HwFastCharge.setEnable(!item.isChecked())) {
                     item.setChecked(!item.isChecked());
                 }
                 return true;

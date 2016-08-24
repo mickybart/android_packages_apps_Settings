@@ -10,7 +10,6 @@
     <string name="urom_generic_disabled">Deshabilitado</string>
     <string name="urom_generic_default">Por defecto</string>
     <string name="urom_generic_reset">Reset</string>
-    <string name="urom_help_summary">(*) requiere reiniciar</string>
     <string name="urom_screen_adaptive">Adaptivo</string>
     <string name="urom_settings_title">Más</string>
     <string name="urom_status_bar_category">Barra de estado</string>
@@ -19,33 +18,32 @@
     
  
     <!-- Ram minfree -->
-    <string name="ram_minfree_title">Umbral máximo de memoria libre (*)</string>
+    <string name="ram_minfree_title">Umbral máximo de memoria libre</string>
     <string name="ram_minfree_automatic">Automático</string>
  
     <!-- zram -->
-    <string name="zram_size_title">Tamaño de intercambio en memoria (*)</string>
+    <string name="zram_size_title">Tamaño de intercambio en memoria</string>
  
     <!-- lightbar -->
-    <string name="lightbar_mode_title">Iluminación de la barra de botones (*)</string>
+    <string name="lightbar_mode_title">Iluminación de la barra de botones</string>
     <string name="lightbar_mode_entries_off">Siempre apagado</string>
     <string name="lightbar_mode_entries_5s">Encendido durante 5s</string>
     <string name="lightbar_mode_entries_on">Encendido/Apagado con la panatalla</string>
-    <string name="lightbar_flash_title">Notificación con luz en botonera (*)</string>
     <string name="lightbar_flash_summary">Parpadeo con notificaciones entrantes</string>
 
     <!-- hw keys layout -->
+    <!--
     <string name="mainkeys_layout_title">Configuración de Botones Físicas (*)</string>
     <string name="mainkeys_layout_entries_deprecated">Obsoleto (Android 2.3)</string>
     <string name="mainkeys_layout_entries_modern">Moderno (Android 4.4+)</string>
+    -->
  
     <!-- hw keys music -->
-    <string name="mainkeys_music_title">Botones físicos - Música (*)</string>
+    <!-- <string name="mainkeys_music_title">Botones físicos - Música</string> -->
     <string name="mainkeys_music_summary">Control de Música con la pantalla apagada</string>
  
     <!-- doze -->
-    <string name="doze_brightness_title">Nivel de brillo ambiente (*)</string>
-    <string name="doze_invert_title">Invertir color ambiente</string>
-    <string name="doze_invert_summary">Deshabilitar solo para temas con notificaciones oscuras</string>
+    <string name="doze_brightness_title">Nivel de brillo ambiente</string>
  
     <!-- color calibration -->
     <string name="color_calibration_title">Calibración del color</string>
@@ -91,7 +89,7 @@
     <string name="color_preset_6000">Luz de sol directa</string>
 
     <!-- AutoPowerModes -->
-    <string name="autopower_title">Ahorro de energía automático (*)</string>
+    <string name="autopower_title">Ahorro de energía automático</string>
     <string name="autopower_summary">Ambiente y aplicaciones en reposo</string>
 
     <!-- Status bar - Battery icon options -->

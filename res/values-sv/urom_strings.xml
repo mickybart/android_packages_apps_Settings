@@ -10,39 +10,37 @@
     <string name="urom_generic_disabled">Inaktiverad</string>
     <string name="urom_generic_default">Standard</string>
     <string name="urom_generic_reset">Nollställ</string>
-    <string name="urom_help_summary">(*) behöver omstart</string>
     <string name="urom_screen_adaptive">Adaptiv</string>
     <string name="urom_settings_title">Mer</string>
     <string name="urom_status_bar_category">Statusfält</string>
 
     <!-- Ram minfree -->
-    <string name="ram_minfree_title">Minnesbrists-dödare (*)</string>
+    <string name="ram_minfree_title">Minnesbrists-dödare</string>
     <string name="ram_minfree_automatic">Automatisk</string>
  
     <!-- zram -->
-    <string name="zram_size_title">Swap i minne (*)</string>
+    <string name="zram_size_title">Swap i minne</string>
  
     <!-- lightbar -->
-    <string name="lightbar_mode_title">Ljusfält (*)</string>
+    <string name="lightbar_mode_title">Ljusfält</string>
     <string name="lightbar_mode_entries_off">Alltid av</string>
     <string name="lightbar_mode_entries_5s">På med 5s tidsgräns</string>
     <string name="lightbar_mode_entries_on">På/Av med skärmen</string>
-    <string name="lightbar_flash_title">Ljusfälts-meddelande (*)</string>
     <string name="lightbar_flash_summary">Blinka på inkommande meddelanden</string>
 
     <!-- hw keys layout -->
+    <!--
     <string name="mainkeys_layout_title">Layout av fysiska knappar (*)</string>
     <string name="mainkeys_layout_entries_deprecated">Utfasad (Android 2.3)</string>
     <string name="mainkeys_layout_entries_modern">Modern (Android 4.4+)</string>
+    -->
  
     <!-- hw keys music -->
-    <string name="mainkeys_music_title">Musik med fysiska knappar (*)</string>
+    <!--<string name="mainkeys_music_title">Musik med fysiska knappar (*)</string>-->
     <string name="mainkeys_music_summary">Musikkontroll när skärmen är av</string>
  
     <!-- doze -->
-    <string name="doze_brightness_title">Omgivningens ljusnivå (*)</string>
-    <string name="doze_invert_title">Invertera omgivningens färg</string>
-    <string name="doze_invert_summary">Stäng bara av med mörka teman</string>
+    <string name="doze_brightness_title">Omgivningens ljusnivå</string>
  
     <!-- color calibration -->
     <string name="color_calibration_title">Färgkalibrering</string>
