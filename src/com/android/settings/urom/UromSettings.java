@@ -33,6 +33,7 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.settings.R;
 import com.android.settings.SettingsActivity;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.urom.utils.HwScreenColors;
 
 public class UromSettings extends SettingsPreferenceFragment
         implements DialogInterface.OnClickListener, DialogInterface.OnDismissListener,
@@ -40,10 +41,8 @@ public class UromSettings extends SettingsPreferenceFragment
     private static final String TAG = "UromSettings";
 
     //urom
-    private static final String KSM_KEY = "ksm";
-    private static final String KSM_PROPERTY = "persist.ksm.enable";
-
     private static final String LIGHTBAR_MODE_KEY = "lightbar_mode";
+    private static final String COLOR_CALIBRATION_KEY = "color_calibration";
 
     private static final String MAINKEYS_LAYOUT_KEY = "mainkeys_layout";
     private static final String MAINKEYS_LAYOUT_PROPERTY = "persist.qemu.hw.mainkeys_layout";
@@ -53,6 +52,10 @@ public class UromSettings extends SettingsPreferenceFragment
     private static final String CAMERAKEY_PROPERTY = "persist.qemu.hw.camerakey";
     private static final String MAINKEYS_NAVBAR_KEY = "mainkeys_navbar";
     private static final String MAINKEYS_NAVBAR_PROPERTY = "persist.qemu.hw.mainkeys";
+
+    private static final String KSM_KEY = "ksm";
+    private static final String KSM_PROPERTY = "persist.ksm.enable";
+    private static final String ZRAM_KEY = "zram_size";
 
     private static final String ALLOW_SIGNATURE_FAKE_KEY = "allow_signature_fake";
     private static final String ALLOW_SIGNATURE_FAKE_PROPERTY = "persist.sys.fake-signature";
@@ -131,11 +134,45 @@ public class UromSettings extends SettingsPreferenceFragment
         mAllowSignatureFakeDialog = null;
 
         //Hide not supported features
-        if (! SystemProperties.get("ro.product.device","").equals("nozomi")) {
-            PreferenceCategory mCategory = (PreferenceCategory) findPreference("urom_display_category");
+        PreferenceCategory mCategory = null;
 
+	mCategory = (PreferenceCategory) findPreference("urom_display_category");
+	if (!getResources().getBoolean(R.bool.config_urom_lightbar)) {
             mCategory.removePreference(findPreference(LIGHTBAR_MODE_KEY));
         }
+	if (!HwScreenColors.isSupported()) {
+	    mCategory.removePreference(findPreference(COLOR_CALIBRATION_KEY));
+	}
+
+        mCategory = (PreferenceCategory) findPreference("urom_buttons_category");
+	if (!getResources().getBoolean(R.bool.config_urom_mainkeys)) {
+	    mCategory.removePreference(mMainkeysLayout);
+	    mCategory.removePreference(mMainkeysNavBar);
+	}
+	if (!getResources().getBoolean(R.bool.config_urom_camerakey)) {
+	    mCategory.removePreference(mCamerakey);
+	}
+
+        mCategory = (PreferenceCategory) findPreference("urom_memory_category");
+	if (!getResources().getBoolean(R.bool.config_urom_zram)) {
+	    mCategory.removePreference(findPreference(ZRAM_KEY));
+	}
+	if (!getResources().getBoolean(R.bool.config_urom_ksm)) {
+	    mCategory.removePreference(mKsm);
+	}
+
+        mCategory = (PreferenceCategory) findPreference("urom_system_category");
+	if (!getResources().getBoolean(R.bool.config_urom_autopower)) {
+	    mCategory.removePreference(mAutoPower);
+	}
+	if (!getResources().getBoolean(R.bool.config_urom_sensors)) {
+	    mCategory.removePreference(mSensors);
+	}
+
+	if (!getResources().getBoolean(R.bool.config_urom_speakerprox)) {
+            mCategory = (PreferenceCategory) findPreference("urom_other_category");
+	    mCategory.removePreference(mDialer);
+	}
     }
 
     private ListPreference addListPreference(String prefKey) {
