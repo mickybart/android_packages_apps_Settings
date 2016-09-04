@@ -60,15 +60,15 @@ public class UromSettings extends SettingsPreferenceFragment
     private static final String SENSORS_KEY = "sensors";
     private static final String AUTOPOWER_KEY = "autopower";
     public static final String AUTOPOWER_PROPERTY = "persist.sys.autopower";
-    
-    private static final String LOCKSCREEN_PHONE_KEY = "lockscreen_phone";
-    private static final String LOCKSCREEN_PHONE_PROPERTY = "persist.lock.force_phone";
-    
+ 
     private static final String QS_ONEFINGER_KEY = "qs_onefinger";
     private static final String QS_ONEFINGER_PROPERTY = "persist.sys.qs_onefinger";
-    
     private static final String STATUSBAR_DOUBLETAP_KEY = "statusbar_doubletap";
     private static final String STATUSBAR_DOUBLETAP_PROPERTY = "persist.sys.statusbar.dt2s";
+
+    private static final String LOCKSCREEN_PHONE_KEY = "lockscreen_phone";
+    private static final String LOCKSCREEN_PHONE_PROPERTY = "persist.lock.force_phone";
+    private static final String DIALER_KEY = "dialer";
 
     //urom
     private SwitchPreference mKsm;
@@ -82,6 +82,7 @@ public class UromSettings extends SettingsPreferenceFragment
     private SwitchPreference mLockscreenPhone;
     private SwitchPreference mQsOneFinger;
     private SwitchPreference mStatusbarDt2s;
+    private PreferenceScreen mDialer;
 
     //Dialog
     private Dialog mAllowSignatureFakeDialog;
@@ -124,6 +125,7 @@ public class UromSettings extends SettingsPreferenceFragment
         mLockscreenPhone = (SwitchPreference) findPreference(LOCKSCREEN_PHONE_KEY);
         mQsOneFinger = (SwitchPreference) findPreference(QS_ONEFINGER_KEY);
         mStatusbarDt2s = (SwitchPreference) findPreference(STATUSBAR_DOUBLETAP_KEY);
+        mDialer = (PreferenceScreen) findPreference(DIALER_KEY);
 
         //Dialog
         mAllowSignatureFakeDialog = null;
@@ -167,6 +169,7 @@ public class UromSettings extends SettingsPreferenceFragment
         updateLockscreenPhoneOptions();
         updateQsOneFingerOptions();
         updateStatusbarDt2sOptions();
+	updateDialerOptions();
     }
     
     //urom
@@ -290,6 +293,10 @@ public class UromSettings extends SettingsPreferenceFragment
                 mStatusbarDt2s.isChecked() ? "true" : "false");
         rebootRequired(getActivity());
         updateStatusbarDt2sOptions();
+    }
+
+    private void updateDialerOptions() {
+        mDialer.setSummary(UromSettingsDialer.getSummaryPreference(getContext()));
     }
 
     @Override

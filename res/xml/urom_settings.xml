@@ -127,6 +127,12 @@
             android:title="@string/lockscreen_phone_title"
             android:summary="@string/lockscreen_phone_summary"/>
 
+        <PreferenceScreen
+            android:key="dialer"
+            android:title="@string/dialer_title"
+            android:summary="@string/urom_generic_disabled"
+            android:fragment="com.android.settings.urom.UromSettingsDialer" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
