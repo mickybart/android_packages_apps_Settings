@@ -16,6 +16,8 @@
     <string name="urom_other_category">Otro</string>
     <string name="urom_about">Información</string>
     
+     <!-- Settings -->
+    <string name="urom_settings_reboot_summary">Por favor reinicia tu dispositivo para aplicar los cambios</string>
  
     <!-- Ram minfree -->
     <string name="ram_minfree_title">Umbral máximo de memoria libre</string>
@@ -30,17 +32,19 @@
     <string name="lightbar_mode_entries_5s">Encendido durante 5s</string>
     <string name="lightbar_mode_entries_on">Encendido/Apagado con la panatalla</string>
     <string name="lightbar_flash_summary">Parpadeo con notificaciones entrantes</string>
+    <string name="lightbar_summary_with_flash">%1$s | Notificación</string>
+    <string name="lightbar_screen_on">Pantalla encendida</string>
+    <string name="lightbar_screen_off">Pantalla apagada</string>
 
     <!-- hw keys layout -->
-    <!--
-    <string name="mainkeys_layout_title">Configuración de Botones Físicas (*)</string>
-    <string name="mainkeys_layout_entries_deprecated">Obsoleto (Android 2.3)</string>
-    <string name="mainkeys_layout_entries_modern">Moderno (Android 4.4+)</string>
-    -->
+    <string name="mainkeys_layout_title">Disposición de botones fisicos</string>
+    <string name="mainkeys_layout_entries_deprecated">Nativo</string>
+    <string name="mainkeys_layout_entries_modern">Menú basado en aplicaciones recientes</string>
+    
  
     <!-- hw keys music -->
-    <!-- <string name="mainkeys_music_title">Botones físicos - Música</string> -->
-    <string name="mainkeys_music_summary">Control de Música con la pantalla apagada</string>
+    <string name="mainkeys_music_title">Volúmenes</string>
+    <string name="mainkeys_music_summary">Controles de Música con la pantalla apagada</string>
  
     <!-- doze -->
     <string name="doze_brightness_title">Nivel de brillo ambiente</string>
@@ -116,7 +120,7 @@
     <string name="urom_about_donation_title">Donación</string>
     <string name="urom_about_developers">Desarrolladores</string>
     <string name="urom_about_leaddeveloper">Desarrollador principal</string>
-    <string name="urom_about_thanks">Gracias</string>
+    <string name="urom_about_thanks">Agradecimientos a:</string>
     <string name="urom_about_developer">Desarrollador</string>
     <string name="urom_about_soundfx">Sound FX</string>
 
