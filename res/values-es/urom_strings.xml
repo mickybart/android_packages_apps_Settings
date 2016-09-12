@@ -16,6 +16,8 @@
     <string name="urom_other_category">Otro</string>
     <string name="urom_about">Información</string>
     
+     <!-- Settings -->
+    <string name="urom_settings_reboot_summary">Por favor reinicia tu dispositivo para aplicar los cambios</string>
  
     <!-- Ram minfree -->
     <string name="ram_minfree_title">Umbral máximo de memoria libre</string>
@@ -30,19 +32,31 @@
     <string name="lightbar_mode_entries_5s">Encendido durante 5s</string>
     <string name="lightbar_mode_entries_on">Encendido/Apagado con la panatalla</string>
     <string name="lightbar_flash_summary">Parpadeo con notificaciones entrantes</string>
+    <string name="lightbar_summary_with_flash">%1$s | Notificación</string>
+    <string name="lightbar_screen_on">Pantalla encendida</string>
+    <string name="lightbar_screen_off">Pantalla apagada</string>
 
     <!-- hw keys layout -->
-    <!--
-    <string name="mainkeys_layout_title">Configuración de Botones Físicas (*)</string>
-    <string name="mainkeys_layout_entries_deprecated">Obsoleto (Android 2.3)</string>
-    <string name="mainkeys_layout_entries_modern">Moderno (Android 4.4+)</string>
-    -->
- 
+    <string name="mainkeys_layout_title">Disposición de botones fisicos</string>
+    <string name="mainkeys_layout_entries_deprecated">Nativo</string>
+    <string name="mainkeys_layout_entries_modern">Menú basado en aplicaciones recientes</string>
+    
     <!-- hw keys music -->
-    <!-- <string name="mainkeys_music_title">Botones físicos - Música</string> -->
-    <string name="mainkeys_music_summary">Control de Música con la pantalla apagada</string>
+    <string name="mainkeys_music_title">Volúmenes</string>
+    <string name="mainkeys_music_summary">Controles de Música con la pantalla apagada</string>
  
-    <!-- doze -->
+     <!-- Camera Key -->
+    <string name="camerakey_title">Camara</string>
+    <string name="camerakey_dialog_title">Iniciar aplicacion de camara</string>
+    <string name="camerakey_never">Nunca</string>
+    <string name="camerakey_longshortpress">Basandose en el estado de la pantalla</string>
+    <string name="camerakey_longpress_only">Con una única pulsación larga</string>
+
+    <!-- Navigation Bar -->
+    <string name="mainkeys_navbar_title">Barra de Navegación</string>
+    <string name="mainkeys_navbar_summary">Teclas en pantalla</string>
+    
+    <!-- doze brightness -->
     <string name="doze_brightness_title">Nivel de brillo ambiente</string>
  
     <!-- color calibration -->
@@ -51,6 +65,8 @@
     <string name="color_red_title">Rojo</string>
     <string name="color_green_title">Verde</string>
     <string name="color_blue_title">Azul</string>
+    <string name="color_profiles">Plantilla : </string>
+    <string name="color_minimum_rgb">RGB Mínimo</string>
  
     <!-- fast charge -->
     <string name="fast_charge">Carga rápida por USB (Fast Charge)</string>
@@ -92,6 +108,22 @@
     <string name="autopower_title">Ahorro de energía automático</string>
     <string name="autopower_summary">Ambiente y aplicaciones en reposo</string>
 
+    <!-- Lockscreen -->
+    <string name="lockscreen_phone_title">Atajo en la pantalla de bloqueo</string>
+    <string name="lockscreen_phone_summary">Forzar el marcador en lugar del asistente de voz</string>
+    
+    <!-- Quick Settings -->
+    <string name="qs_onefinger_title">Expandir ajustes rapidos</string>
+    <string name="qs_onefinger_summary">Quick pull down with one finger</string>
+
+    <!-- Status Bar Double Tap to Sleep -->
+    <string name="statusbar_doubletap_title">Doble toque para apagar</string>
+    <string name="statusbar_doubletap_summary">Doble toque en la barra de estado para apagar la pantalla</string>
+
+    <!-- Status bar - Battery -->
+    <string name="status_bar_battery_title">Batería</string>
+    <string name="status_bar_battery_summary">%1$s | %2$s</string>
+    
     <!-- Status bar - Battery icon options -->
     <string name="status_bar_battery_style_title">Estilo del icono de batería</string>
     <string name="status_bar_battery_style_icon_portrait">Icono vertical</string>
@@ -107,16 +139,47 @@
     <string name="status_bar_battery_percentage_default">Oculto</string>
     <string name="status_bar_battery_percentage_text_inside">Dentro del icono</string>
 
+    <!-- Sensors -->
+    <string name="sensors_title">Sensores</string>
+    <string name="sensors_summary">Administrar sensores</string>
+    <string name="sensors_experimental_warning">Este sensor es experimental y puede ser responsable de algunos casos de inestabilidad o reinicios.\nPor favor, uselo con precaución.</string>
+    <string name="sensors_pickup_title">Recogida</string>
+    <string name="sensors_pickup_summary">Detecta un dispositivo recogido desde una mesa</string>
+    <string name="sensors_pickup_enable">Permitir recogida</string>
+    <string name="sensors_significant_title">Movimiento Significativo</string>
+    <string name="sensors_significant_summary">Detecta si el dispositivo esta en movimiento</string>
+    <string name="sensors_significant_enable">Permitir movimiento significativo</string>
+    <string name="sensors_significant_disable">Desactivar movimiento significativo</string>
+    <string name="sensors_significant_disable_warning">El modo de ahorro se desactivará, porque depende de este sensor.</string>
+    <string name="sensors_accelerometer_title">Accelerometro</string>
+    <string name="sensors_accelerometer_summary">Informara de los tres ejes gravitatorios</string>
+
+    <!-- App Ops -->
+    <string name="app_ops_user_enable_su">Activar el SuperUsuario</string>
+
+    <!-- Proximity speaker -->
+    <string name="dialer_title">Altavoz durante las llamadas</string>
+    <string name="prox_auto_speaker_manual_title">Manual</string>
+    <string name="prox_auto_speaker_title">Altavoz automático por proximidad</string>
+    <string name="prox_auto_speaker_summary"Activar el altavoz automáticamente cuando el teléfono es retirado de la oreja</string>
+    <string name="prox_auto_speaker_delay_title">Retardo del altavoz</string>
+    <string name="prox_auto_speaker_delay_dialog_title">Retardo del altavoz en (ms)</string>
+    <string name="prox_auto_speaker_delay_summary">Altavoz sera activado en <xliff:g id="number">%d</xliff:g> ms</string>
+    <string name="prox_auto_speaker_incall_only_title">Sólo durante una llamada</string>
+    <string name="prox_auto_speaker_incall_only_summary_on">En una llamada saliente, el detector solamente se activará después de reciba una respuesta</string>
+    <string name="prox_auto_speaker_incall_only_summary_off">Detector estará activo durante toda la llamada</string>
+
     <!-- About -->
     <string name="urom_about_rom">Enlaces útiles</string>
     <string name="urom_about_source_title">Github</string>
-    <string name="urom_about_source_summary">Controla y contribuye</string>
+    <string name="urom_about_source_summary">Comprueba y contribuye</string>
     <string name="urom_about_xda_title">XDA</string>
     <string name="urom_about_xda_summary">Hilo de la ROM</string>
+    <string name="urom_about_translation_title">Traduccion de la ROM</string>
     <string name="urom_about_donation_title">Donación</string>
     <string name="urom_about_developers">Desarrolladores</string>
     <string name="urom_about_leaddeveloper">Desarrollador principal</string>
-    <string name="urom_about_thanks">Gracias</string>
+    <string name="urom_about_thanks">Agradecimientos a:</string>
     <string name="urom_about_developer">Desarrollador</string>
     <string name="urom_about_soundfx">Sound FX</string>
 
