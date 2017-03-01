@@ -33,7 +33,7 @@
     <string name="urom_math_zero">0</string>
     <string name="urom_math_percentage">%1$d%%</string>
     <string name="urom_screen_adaptive">自适应</string>
-    <string name="urom_settings_title">nAOSProm选项</string>
+    <string name="urom_settings_title">nAOSProm 选项</string>
     <string name="urom_status_bar_category">状态栏</string>
     <string name="urom_other_category">其他</string>
     <string name="urom_about">信息</string>
