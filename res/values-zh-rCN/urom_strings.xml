@@ -106,7 +106,7 @@
 
     <!-- WakeUp -->
     <string name="wakeup_title">唤醒</string>
-    <string name="wakeup_gesture_summary">配置触屏手势</string>
+    <string name="wakeup_gesture_summary">配置触摸屏唤醒手势</string>
 
     <!-- Substratum -->
     <string name="substratum_title">Substratum</string>
@@ -116,7 +116,7 @@
     <string name="ksm_summary">内核同页合并</string>
 
     <!-- Allow fake signature checkbox in developer settings -->
-    <string name="allow_signature_fake">允许伪造签名</string>
+    <string name="allow_signature_fake">允许伪装签名</string>
     <string name="allow_signature_fake_summary">允许应用伪装成其他应用以绕过安全系统</string>
     <string name="allow_signature_fake_warning">允许应用绕过安全系统可能会造成严重的安全及隐私问题！请确保该功能启用时只有无害的应用使用相应的权限。</string>
     
@@ -132,7 +132,7 @@
     <string name="color_preset_6000">直射日光</string>
 
     <!-- AutoPowerModes -->
-    string name="autopower_title">自动节省电量</string>
+    <string name="autopower_title">自动节省电量</string>
     <string name="autopower_summary">环境与应用待机</string>
     
     <!-- Lockscreen -->
